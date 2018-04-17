@@ -10,10 +10,14 @@ source "$HOST_MERC_DIR/var.list";
 
 # perpare 
 $ADB_CMD connect 192.168.122.48:5555
-while [ `$ADB_CMD shell "id|cut -d '(' -f1"` = "uid=0" ]; do # check success
+#ID=$ADB_CMD shell "id|cut -d '(' -f1";
+#	echo "$ID";
+#while [ "$ID" != "uid=0" ]; do # check success
 	$ADB_CMD root 
 	$ADB_CMD connect 192.168.122.48:5555
-done;
+#	ID=$ADB_CMD shell "id|cut -d '(' -f1";
+#	echo "$ID";
+#done;
 
 ### for guild members
 echo "=== guild member sign in ===";
