@@ -10,8 +10,8 @@ source "$HOST_MERC_DIR/var.list";
 
 # perpare 
 $ADB_CMD connect 192.168.122.48:5555
-while [ `$ADB_CMD shell "id|cut -d '(' -f1"` = "uid=0" ]; do
-	$ADB_CMD root # need check success
+while [ `$ADB_CMD shell "id|cut -d '(' -f1"` = "uid=0" ]; do # check success
+	$ADB_CMD root 
 	$ADB_CMD connect 192.168.122.48:5555
 done;
 
@@ -76,6 +76,6 @@ for I in `ls $HOST_MERC_DIR/account/`; do
 	$ADB_CMD shell input tap 600 600 # button_OK
 	$ADB_CMD shell "ps|grep happyelement|cut -d ' ' -f5|xargs kill" # stop merc 
 done;
-$ADB_CMD shell poweroff;
+$ADB_CMD shell poweroff; # poweroff vm
 
 
