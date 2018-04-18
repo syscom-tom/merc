@@ -87,7 +87,7 @@ $ADB_CMD shell input tap "$GPOS_X" "$GPOS_Y" # tap gulid pos
 let C="$C"-1;
 for I in `seq 1 1 $C`; do 
 	$ADB_CMD shell input tap "$TAP_X" 400
-	if [ "$C" -gt 0 ]; then ping 127.0.0.1 -c 7 1> /dev/null; let C="$C"-1; done;
+	if [ "$C" -gt "$I" ]; then ping 127.0.0.1 -c 7 1> /dev/null; done;
 done;
 #$ADB_CMD shell input tap "$TAP_X" 400
 $ADB_CMD shell "ps|grep happyelement|cut -d ' ' -f5|xargs kill" # stop merc
