@@ -22,5 +22,5 @@ for I in `echo $ACCOUNT_LIST`; do echo "$I" ;
 	$ADB_CMD shell input tap 600 600 # button_OK
 	$ADB_CMD shell input tap 800 600 # button_Y/N-Y
 	$ADB_CMD pull /data/data/jp.co.happyelements.toto/shared_prefs/jp.co.happyelements.toto.v2.playerprefs.xml "$HOST_MERC_DIR/account/$I" 1>/dev/null
-	$ADB_CMD shell "sh /data/data/merc/stop.sh" # stop merc 
+	$ADB_CMD shell "ps|grep happyelement|cut -d ' ' -f5|xargs kill" # stop merc 
 done;

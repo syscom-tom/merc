@@ -22,5 +22,5 @@ $ADB_CMD shell 'for i in `seq 1 1 18`; do input tap 1200 700; done'
 	$ADB_CMD shell input tap 1150 750 # button_log
 	done; # done
 	$ADB_CMD pull /data/data/jp.co.happyelements.toto/shared_prefs/jp.co.happyelements.toto.v2.playerprefs.xml "$HOST_MERC_DIR/account/$I"
-	$ADB_CMD shell "sh /data/data/merc/stop.sh" # stop merc 
+	$ADB_CMD shell "ps|grep happyelement|cut -d ' ' -f5|xargs kill" # stop merc 
 done;

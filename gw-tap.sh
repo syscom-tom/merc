@@ -63,7 +63,7 @@ echo "$ACCOUNT tap ($GPOS_X,$GPOS_Y),$TAP_X * $C (full bp with $FILL_UP)";
 # perform tap step
 $ADB_CMD push "$HOST_MERC_DIR/account/$ACCOUNT" /data/data/jp.co.happyelements.toto/shared_prefs/jp.co.happyelements.toto.v2.playerprefs.xml 1>/dev/null
 $ADB_CMD shell input tap 550 300 # tap merc icon
-$ADB_CMD shell 'for i in `seq 1 1 18`; do input tap 1200 700; done'
+$ADB_CMD shell 'for i in `seq 1 1 20`; do input tap 1200 700; done'
 if [ "$FILL_UP" = "bottle" ]; then # fill up bp with bp bottle
 	echo "fill up bp with bp bottle method not implementation"; # not sure position of bp bottle
 	exit;
@@ -87,8 +87,8 @@ $ADB_CMD shell input tap "$GPOS_X" "$GPOS_Y" # tap gulid pos
 let C="$C"-1;
 for I in `seq 1 1 $C`; do 
 	$ADB_CMD shell input tap "$TAP_X" 400
-	ping 127.0.0.1 -c 7 1> /dev/null
+	if [ "$C" -gt 0 ]; then ping 127.0.0.1 -c 7 1> /dev/null; let C="$C"-1; done;
 done;
-$ADB_CMD shell input tap "$TAP_X" 400
-$ADB_CMD shell "sh /data/data/merc/stop.sh" # stop merc
+#$ADB_CMD shell input tap "$TAP_X" 400
+$ADB_CMD shell "ps|grep happyelement|cut -d ' ' -f5|xargs kill" # stop merc
 

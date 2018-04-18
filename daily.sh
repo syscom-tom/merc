@@ -10,8 +10,7 @@ source "$HOST_MERC_DIR/var.list";
 
 # perpare 
 $ADB_CMD connect 192.168.122.48:5555
-#ID=$ADB_CMD shell "id|cut -d '(' -f1";
-#	echo "$ID";
+#ID=echo "$ADB_CMD shell id|cut -d '(' -f1"; echo "adb shell $ID";
 #while [ "$ID" != "uid=0" ]; do # check success
 	$ADB_CMD root 
 	$ADB_CMD connect 192.168.122.48:5555

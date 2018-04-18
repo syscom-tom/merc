@@ -1,9 +1,9 @@
-# merc
+# Introduction 
 
-- refind script: daily.sh & gw.sh -m mode pool spring default 
-merc sh > log +date, header file? source ~~account.list~~, pos.list ~~/etc/cron.d/~~ 
-every account take spring wood, maybe (check guild member or not)
-https://github.com/syscom-tom/merc
+    automatically sign in, take reward, guild event in Merc Storica.
 
-# error log
-- 4/16 only guild member sign in
+# Uasage
+
+- daily.sh
+- gw.sh
+- gw-tap.sh
