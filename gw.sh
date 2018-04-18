@@ -65,6 +65,7 @@ $ADB_CMD connect 192.168.122.48:5555
 $ADB_CMD root # need check success
 $ADB_CMD connect 192.168.122.48:5555
 # perform
+# according mode type, GUILD_PIONEER and ONE do different
 for I in `echo $GUILD_MEMBERS`; do # basic
 	if [ ! -f "$HOST_MERC_DIR/account/$I" ]; then echo "$HOST_MERC_DIR/account/$I not exist. please check member list."; exit 1; fi;
 	/bin/sh $HOST_MERC_DIR/gw-tap.sh -a "$I" -c "$C" -f "$F" "$POS" # support 500 bp
