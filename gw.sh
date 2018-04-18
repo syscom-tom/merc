@@ -7,10 +7,9 @@
 # define var
 HOST_MERC_DIR="/home/kiosk/merc"
 source "$HOST_MERC_DIR/var.list";
-UASAGE="usage: gw-support.sh [-p1 -p2 -p3 -p4] [-f] [--pray]"
+UASAGE="usage: gw-support.sh [-p1 -p2 -p3 -p4] [-m spring|guild-bp-support|support]"
 POS="-p1"
-FILL_UP=false
-PRAY=false
+MODE="none"
 
 # parameters pass var
 while [ "$1" != "" ]; do
@@ -27,11 +26,28 @@ while [ "$1" != "" ]; do
 	-p4) # guild position 4
 		POS="-p4"
 	;;
-	-f) # fill up bp with guild pool
-		FILL_UP=true;
-	;;
-	--pray) # pray mode
-		PRAY=true;
+	-m) # mode spring only, pool and support, pray, support only
+		shift
+		case $1 in
+			spring) # spring only
+				MODE="spring"
+				F="spring"
+				C="0"
+			;;
+			guild-bp-support) # pool bp and support 
+				MODE="guild-bp-support"
+				F="guild"
+				C="20"
+			;;
+			support) # support only
+				MODE="support"
+				F="none"
+				C="20"
+			;;
+			*)
+				echo "$UASAGE";
+			;;
+		esac
 	;;
 	-h | --help )
 		echo "$UASAGE";
@@ -48,29 +64,9 @@ done
 $ADB_CMD connect 192.168.122.48:5555
 $ADB_CMD root # need check success
 $ADB_CMD connect 192.168.122.48:5555
-# perform 
-if [ "$FILL_UP" = true ] && [ "$PRAY" = true ]; then # maybe fill bp with spring water
-	echo "not implementation";
-	$ADB_CMD shell poweroff;
-	exit;
-elif [ "$PRAY" = true ]; then # maybe change
-	for I in `echo $GUILD_MEMBERS`; do
-		if [ ! -f "$HOST_MERC_DIR/account/$I" ]; then echo "$HOST_MERC_DIR/account/$I not exist. please check member list."; exit 1; fi;
-		#/bin/sh $HOST_MERC_DIR/gw-tap.sh -a "$I" -c 20 --pray "$POS" # pray 300 bp
-		/bin/sh $HOST_MERC_DIR/gw-tap.sh -a "$I" -c 10 --pray "$POS" # pray 150 bp
-	done;
-	$ADB_CMD shell poweroff;
-	exit;
-elif [ "$FILL_UP" = true ]; then
-	for I in `echo $GUILD_MEMBERS`; do
-		if [ ! -f "$HOST_MERC_DIR/account/$I" ]; then echo "$HOST_MERC_DIR/account/$I not exist. please check member list."; exit 1; fi;
-		/bin/sh $HOST_MERC_DIR/gw-tap.sh -a "$I" -c 20 -f guild "$POS" # fill up bp & support 500 bp
-	done;
-	$ADB_CMD shell poweroff;
-	exit;
-fi;
+# perform
 for I in `echo $GUILD_MEMBERS`; do # basic
 	if [ ! -f "$HOST_MERC_DIR/account/$I" ]; then echo "$HOST_MERC_DIR/account/$I not exist. please check member list."; exit 1; fi;
-	/bin/sh $HOST_MERC_DIR/gw-tap.sh -a "$I" -c 20 "$POS" # support 500 bp
+	/bin/sh $HOST_MERC_DIR/gw-tap.sh -a "$I" -c "$C" -f "$F" "$POS" # support 500 bp
 done;
 $ADB_CMD shell poweroff;
