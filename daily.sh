@@ -10,13 +10,12 @@ source "$HOST_MERC_DIR/var.list";
 
 # perpare 
 $ADB_CMD connect 192.168.122.48:5555
-#ID=echo "$ADB_CMD shell id|cut -d '(' -f1"; echo "adb shell $ID";
-#while [ "$ID" != "uid=0" ]; do # check success
+ID=`/home/kiosk/platform-tools/adb shell id|cut -d '(' -f1`; echo "adb shell $ID";
+while [ "$ID" != "uid=0" ]; do # check success
 	$ADB_CMD root 
 	$ADB_CMD connect 192.168.122.48:5555
-#	ID=$ADB_CMD shell "id|cut -d '(' -f1";
-#	echo "$ID";
-#done;
+	ID=`/home/kiosk/platform-tools/adb shell id|cut -d '(' -f1`; echo "adb shell $ID";
+done;
 
 ### for guild members
 echo "=== guild member sign in ===";
@@ -70,6 +69,13 @@ for I in `ls $HOST_MERC_DIR/account/`; do
 	$ADB_CMD shell input tap 600 600 # button_OK
 	$ADB_CMD shell input tap 600 600 # button_OK
 	$ADB_CMD shell input tap 1100 50 # button_log_close
+# take spring
+	#$ADB_CMD shell input tap 100 750 # button_home
+	$ADB_CMD shell input tap 100 300 # button_spring
+	ping 127.0.0.1 -c 3 1> /dev/null # wait loading
+	$ADB_CMD shell input tap 100 300 # any tap
+	$ADB_CMD shell input tap 800 600 # button_Y/N-Y
+# take gift
 	$ADB_CMD shell input tap 100 750 # button_home
 	$ADB_CMD shell input tap 100 380 # button_gift
 	$ADB_CMD shell input tap 100 380 # button_gift
