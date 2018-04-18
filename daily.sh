@@ -72,8 +72,11 @@ for I in `ls $HOST_MERC_DIR/account/`; do
 # take spring
 	#$ADB_CMD shell input tap 100 750 # button_home
 	$ADB_CMD shell input tap 100 300 # button_spring
+	$ADB_CMD shell input tap 100 300 # button_spring
 	ping 127.0.0.1 -c 3 1> /dev/null # wait loading
 	$ADB_CMD shell input tap 100 300 # any tap
+	$ADB_CMD shell input tap 100 300 # any tap
+	ping 127.0.0.1 -c 3 1> /dev/null # wait loading
 	$ADB_CMD shell input tap 800 600 # button_Y/N-Y
 # take gift
 	$ADB_CMD shell input tap 100 750 # button_home
