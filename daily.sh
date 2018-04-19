@@ -27,7 +27,6 @@ for I in `echo $GUILD_MEMBERS`; do
 	$ADB_CMD shell input tap 550 300 # tap merc icon
 	$ADB_CMD shell 'for i in `seq 1 1 22`; do input tap 1200 700; done'
 	$ADB_CMD shell input tap 1150 750 # button_log
-	#for n in `seq 1 1 50`; do $ADB_CMD shell input tap 800 50; done; # button_log_救援
 	$ADB_CMD shell input tap 800 50 # button_log_救援
 	$ADB_CMD shell input tap 1200 120 # button_log_救援scroll_top
 	$ADB_CMD shell input tap 1050 240 # button_log_救援1
@@ -53,7 +52,6 @@ for I in `ls $HOST_MERC_DIR/account/`; do
 	$ADB_CMD shell input tap 550 300 # tap merc icon
 	$ADB_CMD shell 'for i in `seq 1 1 22`; do input tap 1200 700; done'
 	$ADB_CMD shell input tap 1150 750 # button_log
-	#for n in `seq 1 1 50`; do $ADB_CMD shell input tap 800 50; done; # button_log_救援
 	$ADB_CMD shell input tap 800 50 # button_log_救援
 	$ADB_CMD shell input tap 1200 120 # button_log_救援scroll_top
 	$ADB_CMD shell input tap 1050 240 # button_log_救援1
