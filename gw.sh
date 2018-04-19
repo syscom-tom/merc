@@ -48,6 +48,7 @@ while [ "$1" != "" ]; do
 			;;
 			*)
 				echo "$UASAGE";
+				exit 1
 			;;
 		esac
 	;;
