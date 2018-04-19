@@ -10,6 +10,8 @@ source "$HOST_MERC_DIR/var.list";
 UASAGE="usage: gw-support.sh [-p1 -p2 -p3 -p4] [-m spring|guild-bp-support|support]"
 POS="-p1"
 MODE="none"
+F="none"
+C="0"
 
 # parameters pass var
 while [ "$1" != "" ]; do
