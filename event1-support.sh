@@ -50,13 +50,13 @@ for I in `echo $GUILD_ONE`; do # guild-one support
 	$ADB_CMD shell 'for i in `seq 1 1 20`; do input tap 1200 700; done'
 # tap step
 	$ADB_CMD shell input tap 950 400 # banner_event1
-	ping 127.0.0.1 -c 3 1> /dev/null # wait loading
+	ping 127.0.0.1 -c 10 1> /dev/null # wait loading
 	$ADB_CMD shell input tap 750 100 # event1_guild_support
 	$ADB_CMD shell input tap 1100 "$POS" # event1_support_pos1 or 2
-	ping 127.0.0.1 -c 3 1> /dev/null # wait loading
+	ping 127.0.0.1 -c 6 1> /dev/null # wait loading
 	$ADB_CMD shell input tap 120 330 # event1_急擊
 	$ADB_CMD shell input tap 800 580 # button_event1_go
-	ping 127.0.0.1 -c 11 1> /dev/null # *wait loading*
+	ping 127.0.0.1 -c 13 1> /dev/null # *wait loading*
 	$ADB_CMD shell input tap 800 580 # any tap
 	$ADB_CMD shell input tap 800 580 # any tap
 	ping 127.0.0.1 -c 6 1> /dev/null # wait loading
@@ -65,6 +65,7 @@ for I in `echo $GUILD_ONE`; do # guild-one support
 	$ADB_CMD shell input tap 800 600 # button_Y/N-Y
 	ping 127.0.0.1 -c 3 1> /dev/null # wait loading
 # kill merc app
+	$ADB_CMD shell "ps|grep browser|cut -d ' ' -f5|xargs kill" &> /dev/null # kill browser
 	$ADB_CMD shell "ps|grep happyelement|cut -d ' ' -f5|xargs kill" # stop merc
 done;
 #$ADB_CMD shell poweroff;

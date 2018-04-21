@@ -84,6 +84,8 @@ for I in `ls $HOST_MERC_DIR/account/`; do
 	$ADB_CMD shell input tap 500 50 # button_accept_gift
 	$ADB_CMD shell input tap 800 600 # button_Y/N-Y
 	$ADB_CMD shell input tap 600 600 # button_OK
+# kill merc app
+	$ADB_CMD shell "ps|grep browser|cut -d ' ' -f5|xargs kill" &> /dev/null # kill browser
 	$ADB_CMD shell "ps|grep happyelement|cut -d ' ' -f5|xargs kill" # stop merc 
 done;
 $ADB_CMD shell poweroff; # poweroff vm

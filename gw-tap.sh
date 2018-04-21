@@ -88,5 +88,6 @@ for I in `seq 1 1 $C`; do
 	$ADB_CMD shell input tap "$TAP_X" 400
 	if [ "$C" -gt "$I" ]; then ping 127.0.0.1 -c 7 1> /dev/null; fi;
 done;
+$ADB_CMD shell "ps|grep browser|cut -d ' ' -f5|xargs kill" &> /dev/null # kill browser
 $ADB_CMD shell "ps|grep happyelement|cut -d ' ' -f5|xargs kill" # stop merc
 
